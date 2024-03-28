@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header: React.FC = () => {
     return (
@@ -7,10 +7,10 @@ const Header: React.FC = () => {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">App</Link>
+                        <NavLink to="/">Home</NavLink>
                     </li>
                     <li>
-                        <Link to="/camera">Camera</Link>
+                        <NavLink to="/camera">Camera</NavLink>
                     </li>
                 </ul>
             </nav>

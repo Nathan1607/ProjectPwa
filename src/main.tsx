@@ -1,7 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import App from './pages/Home.tsx'
 import './index.css'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
+import Camera from './pages/Camera.tsx';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
@@ -14,8 +21,19 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/camera",
+    element: <Camera />,
+  },
+
+]);
+
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <RouterProvider router={router} />
 )
