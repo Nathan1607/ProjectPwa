@@ -51,6 +51,21 @@ export default function CameraView() {
             const data = canvas.toDataURL('image/png');
             photo?.setAttribute('src', data);
             localStorage.setItem('photo', data);
+
+            if(Notification.permission === 'granted') {
+                showNotification("Photo prise !");
+                console.log('Notification envoyé');
+            }
+            else {
+                if(Notification.permission !== 'denied') {
+                    Notification.requestPermission().then(permission => {
+                        if(permission === 'granted') {
+                            showNotification("Photo prise !");
+                        }
+                    });
+                }
+            }
+
         } else {
             console.error('No video width and height');
         }
@@ -67,16 +82,21 @@ export default function CameraView() {
         photo.setAttribute('src', data);
     }
 
+    function showNotification(message: string) {
+        const title = 'Notification';
+        const options = {
+            body: message,
+        };
+
+        new Notification(title, options);
+    }
+
   return (
     <div>
         <button id="snapBtn" onClick={takePhoto}>Photo</button>
         <button onClick={clearPhoto}>Clear</button>
         <br />
-        {mediaStream ? (
-                <video id="cam" muted autoPlay={true}></video>
-            ) : (
-                <p>Video stream not available</p>
-            )}
+        <video id="cam" muted>Not available</video>
         <canvas id="canvas"></canvas> 
     </div>
   )
