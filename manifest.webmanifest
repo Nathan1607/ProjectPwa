@@ -1,9 +1,0 @@
-{
-  "name": "Project PWA",
-  "short_name": "PWA",
-  "lang": "fr",
-  "start_url": "/",
-  "display": "standalone",
-  "theme_color": "pink",
-  "form_factor": "wide" 
-}
