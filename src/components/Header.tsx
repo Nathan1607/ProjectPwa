@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import '../style/Header.css';
 
 const Header: React.FC = () => {
     return (

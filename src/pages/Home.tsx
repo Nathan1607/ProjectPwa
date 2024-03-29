@@ -4,7 +4,8 @@ export default function App() {
   return (
       <div>
         <Header />
-        <h1>Home</h1>
+
+        <h1>Vous êtes sur la page Home</h1>
       </div>
   );
 }
