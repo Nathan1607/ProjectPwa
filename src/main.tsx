@@ -30,6 +30,9 @@ const router = createBrowserRouter([
     path: "/camera",
     element: <Camera />,
   },
+  {
+    path: "/localisation",
+  }
 
 ]);
 

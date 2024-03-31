@@ -8,6 +8,7 @@ const Routes: React.FC = () => {
         <BrowserRouter>
             <Route path="/" element={<App />} /> 
             <Route path="/camera" element={<Camera />} />
+            <Route path="/localisation" />
         </BrowserRouter>
     );
 };
