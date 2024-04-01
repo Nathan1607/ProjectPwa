@@ -96,6 +96,7 @@ export default function CameraView() {
         <button id="snapBtn" onClick={takePhoto}>Photo</button>
         <button onClick={clearPhoto}>Clear</button>
         <br />
+        <br />
         <video id="cam" muted>Not available</video>
         <canvas id="canvas"></canvas> 
     </div>
