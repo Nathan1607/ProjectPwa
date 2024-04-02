@@ -13,6 +13,9 @@ const Header: React.FC = () => {
                     <li>
                         <NavLink to="/camera">Camera</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/localisation">Localisation</NavLink>
+                    </li>
                 </ul>
             </nav>
         </div>

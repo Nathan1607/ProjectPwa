@@ -9,11 +9,12 @@ import {
   Link,
 } from "react-router-dom";
 import Camera from './pages/Camera.tsx';
+import Localisation from './pages/Localisation.tsx';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('/service-worker.tsx');
+      const registration = await navigator.serviceWorker.register('/service-worker.js');
       console.log('Service Worker registered successfully:', registration);
     } catch (error) {
       console.log('Service Worker registration failed:', error);
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/localisation",
+    element: <Localisation />,
   }
 
 ]);

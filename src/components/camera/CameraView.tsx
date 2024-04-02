@@ -4,6 +4,7 @@ export default function CameraView() {
 
     useEffect(() => {
         getMediaStream(constraints);
+        requestNotificationPermission;
     });
 
     let mediaStream = null;
@@ -31,6 +32,16 @@ export default function CameraView() {
             console.error('Error accessing media devices.', error);
         }
     };
+
+    function requestNotificationPermission() {
+        if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    console.log('Notification permission granted.');
+                }
+            });
+        }
+    }
 
     function takePhoto() {
         let canvas = document.getElementById('canvas') as HTMLCanvasElement;
