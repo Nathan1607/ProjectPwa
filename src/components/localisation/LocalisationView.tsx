@@ -6,21 +6,39 @@ interface LocationState {
 }
 
 export default function LocalisationView() {
-
   const [location, setLocation] = useState<LocationState | null>(null);
 
+  // Save the location to local storage
+  const saveLocationToLocalStorage = (location: LocationState) => {
+    localStorage.setItem('location', JSON.stringify(location));
+  };
+
+  // Get the location from local storage
+  const getLocationFromLocalStorage = (): LocationState | null => {
+    const savedLocation = localStorage.getItem('location');
+    return savedLocation ? JSON.parse(savedLocation) : null;
+  };
+
   useEffect(() => {
-    if("geolocation" in navigator){
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLocation({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        });
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    const storedLocation = getLocationFromLocalStorage();
+    if (storedLocation) {
+      setLocation(storedLocation);
+    }
+
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const newLocation = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
+          setLocation(newLocation);
+          saveLocationToLocalStorage(newLocation);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     } else {
       console.log('Geolocation not available');
     }
@@ -28,7 +46,7 @@ export default function LocalisationView() {
 
   return (
     <div>
-        {location ? (
+      {location ? (
         <div>
           <p>Latitude: {location.latitude}</p>
           <p>Longitude: {location.longitude}</p>
@@ -37,5 +55,5 @@ export default function LocalisationView() {
         <p>En attente de la localisation...</p>
       )}
     </div>
-  )
+  );
 }
