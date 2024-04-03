@@ -4,7 +4,7 @@ export default function CameraView() {
 
     useEffect(() => {
         getMediaStream(constraints);
-        requestNotificationPermission;
+        requestNotificationPermission();
     });
 
     let mediaStream = null;
@@ -63,18 +63,10 @@ export default function CameraView() {
             photo?.setAttribute('src', data);
             localStorage.setItem('photo', data);
 
-            if(Notification.permission === 'granted') {
+            if (navigator.serviceWorker && navigator.serviceWorker.controller && Notification.permission === 'granted') {
                 showNotification("Photo prise !");
-                console.log('Notification envoyé');
-            }
-            else {
-                if(Notification.permission !== 'denied') {
-                    Notification.requestPermission().then(permission => {
-                        if(permission === 'granted') {
-                            showNotification("Photo prise !");
-                        }
-                    });
-                }
+            } else {
+                console.error('Service worker not available or notification permission not granted');
             }
 
         } else {
@@ -94,12 +86,13 @@ export default function CameraView() {
     }
 
     function showNotification(message: string) {
-        const title = 'Notification';
-        const options = {
-            body: message,
-        };
-
-        new Notification(title, options);
+        if (navigator.serviceWorker.controller) {
+            navigator.serviceWorker.ready.then(registration => {
+                registration.showNotification('Notification', {
+                    body: message,
+                });
+            });
+        }
     }
 
   return (
