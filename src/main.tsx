@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Camera from './pages/Camera.tsx';
 import Localisation from './pages/Localisation.tsx';
+import GalleriePhoto from './pages/GalleriePhoto.tsx';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/localisation",
     element: <Localisation />,
+  },
+  {
+    path: "/galleriephoto",
+    element: <GalleriePhoto />,
   }
 
 ]);

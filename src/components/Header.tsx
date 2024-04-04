@@ -16,6 +16,9 @@ const Header: React.FC = () => {
                     <li>
                         <NavLink to="/localisation">Localisation</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/galleriephoto">Gallerie Photo</NavLink>
+                    </li>
                 </ul>
             </nav>
         </div>
