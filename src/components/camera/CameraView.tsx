@@ -1,11 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CameraView() {
+
+    const [photos, setphotos] = useState<string[]>([]);
+
 
     useEffect(() => {
         getMediaStream(constraints);
         requestNotificationPermission();
     });
+
+    useEffect(() => {
+        localStorage.setItem('photos', JSON.stringify(photos));
+    }, [photos]);    
 
     let mediaStream = null;
 
@@ -46,7 +53,6 @@ export default function CameraView() {
     function takePhoto() {
         let canvas = document.getElementById('canvas') as HTMLCanvasElement;
         let video = document.getElementById('cam') as HTMLVideoElement;
-        let photo = document.getElementById('photo');
 
         let context = canvas.getContext('2d');
 
@@ -60,8 +66,8 @@ export default function CameraView() {
             context?.drawImage(video, 0, 0, width, height);    
 
             const data = canvas.toDataURL('image/png');
-            photo?.setAttribute('src', data);
-            localStorage.setItem('photo', data);
+
+            setphotos(prevPhotos => [...prevPhotos, data])
 
             if (navigator.serviceWorker && navigator.serviceWorker.controller && Notification.permission === 'granted') {
                 showNotification("Photo prise !");
@@ -72,17 +78,6 @@ export default function CameraView() {
         } else {
             console.error('No video width and height');
         }
-    }
-
-    function clearPhoto() {
-        let canvas = document.getElementById('canvas') as HTMLCanvasElement;
-        let photo = document.getElementById('photo') as HTMLImageElement;
-        let context = canvas.getContext('2d') as CanvasRenderingContext2D;
-
-        context.fillStyle = "#AAA";
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        var data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
     }
 
     function showNotification(message: string) {
@@ -98,11 +93,14 @@ export default function CameraView() {
   return (
     <div>
         <button id="snapBtn" onClick={takePhoto}>Photo</button>
-        <button onClick={clearPhoto}>Clear</button>
         <br />
         <br />
         <video id="cam" muted>Not available</video>
         <canvas id="canvas"></canvas> 
+
+        {photos.map((photo, index) => (
+                <img key={index} src={photo} alt={`Photo ${index}`} />
+            ))}
     </div>
   )
 }
