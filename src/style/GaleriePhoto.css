@@ -1,0 +1,21 @@
+.gallery-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+  
+.no-photos-message {
+    color: red;
+}
+  
+.photos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.photo-item {
+    width: 25rem;
+    height: 20rem;
+    margin: 2rem;
+}

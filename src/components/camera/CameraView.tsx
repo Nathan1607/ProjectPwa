@@ -97,10 +97,6 @@ export default function CameraView() {
         <br />
         <video id="cam" muted>Not available</video>
         <canvas id="canvas"></canvas> 
-
-        {photos.map((photo, index) => (
-                <img key={index} src={photo} alt={`Photo ${index}`} />
-            ))}
     </div>
   )
 }
