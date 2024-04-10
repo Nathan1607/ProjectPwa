@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import '../../style/Localisation.css';
 
 interface LocationState {
   latitude: number;
@@ -45,9 +46,9 @@ export default function LocalisationView() {
   }, []);
 
   return (
-    <div>
+    <div className="location-container">
       {location ? (
-        <div>
+        <div className="location-info">
           <p>Latitude: {location.latitude}</p>
           <p>Longitude: {location.longitude}</p>
         </div>

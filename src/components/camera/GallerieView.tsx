@@ -6,7 +6,7 @@ export default function GallerieView() {
 
     return (
         <div className="gallery-container">
-            <p className="gallery-title">Mes Photos :</p>
+            <p className="gallery-title">Ma Galerie Photo :</p>
             {photosFromLocalStorage.length === 0 ? (
                 <p className="no-photos-message">Aucune photo disponible. Veuillez prendre des photos.</p> 
             ) : (
