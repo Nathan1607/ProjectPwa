@@ -58,3 +58,6 @@ export default function LocalisationView() {
     </div>
   );
 }
+
+{/* Pour intégrer une map et un point à parrir de longitude et latitude -> librairy installable via npm
+ https://leafletjs.com/ */}

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import GalleriePhoto from "../../pages/GalleriePhoto";
+import { useNavigate } from 'react-router-dom';
 
 export default function CameraView() {
+
+    const navigate = useNavigate();
 
     const [photos, setphotos] = useState<string[]>([]);
     const [isPhotoTaken, setIsPhotoTaken] = useState(false); // State to track if photo is taken
@@ -68,7 +72,7 @@ export default function CameraView() {
             const data = canvas.toDataURL('image/png');
 
             setphotos(prevPhotos => [...prevPhotos, data])
-            setIsPhotoTaken(true); // Set photo taken state to true
+            setIsPhotoTaken(true);
 
             if (navigator.serviceWorker && navigator.serviceWorker.controller && Notification.permission === 'granted') {
                 showNotification("Photo prise !");
@@ -93,11 +97,14 @@ export default function CameraView() {
 
   return (
     <div className="container-dev">
-        <button id="snapBtn" onClick={takePhoto}>Photo</button>
+        <div className="BtnTake">
+            <button id="snapBtn" onClick={takePhoto}>Photo</button>
+            <button className="btn-Gallerie" onClick={() => navigate('/galleriephoto')}>Gallerie</button>
+        </div>
         <div className="container">
             <div className="container-video">
                 <video id="cam" muted>Not available</video>
-                {isPhotoTaken && <img src={photos[photos.length - 1]} alt="Captured" />}
+                {isPhotoTaken && <img className="photoTaken" src={photos[photos.length - 1]} alt="Captured" />}
             </div>
             <canvas id="canvas"></canvas>
         </div>

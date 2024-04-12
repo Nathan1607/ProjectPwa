@@ -7,7 +7,7 @@ export default function Camera() {
   return (
     <div>
       <Header />
-      <h1>Bienvenue sur la page Caméra</h1>
+      <h1 className="title">Bienvenue sur la page Caméra</h1>
       <CameraView />
     </div>
   )
