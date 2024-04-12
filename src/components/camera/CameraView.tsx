@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 export default function CameraView() {
 
     const [photos, setphotos] = useState<string[]>([]);
-
+    const [isPhotoTaken, setIsPhotoTaken] = useState(false); // State to track if photo is taken
 
     useEffect(() => {
         getMediaStream(constraints);
         requestNotificationPermission();
-    });
+    }, []);
 
     useEffect(() => {
         localStorage.setItem('photos', JSON.stringify(photos));
@@ -68,6 +68,7 @@ export default function CameraView() {
             const data = canvas.toDataURL('image/png');
 
             setphotos(prevPhotos => [...prevPhotos, data])
+            setIsPhotoTaken(true); // Set photo taken state to true
 
             if (navigator.serviceWorker && navigator.serviceWorker.controller && Notification.permission === 'granted') {
                 showNotification("Photo prise !");
@@ -91,12 +92,15 @@ export default function CameraView() {
     }
 
   return (
-    <div>
+    <div className="container-dev">
         <button id="snapBtn" onClick={takePhoto}>Photo</button>
-        <br />
-        <br />
-        <video id="cam" muted>Not available</video>
-        <canvas id="canvas"></canvas> 
+        <div className="container">
+            <div className="container-video">
+                <video id="cam" muted>Not available</video>
+                {isPhotoTaken && <img src={photos[photos.length - 1]} alt="Captured" />}
+            </div>
+            <canvas id="canvas"></canvas>
+        </div>
     </div>
   )
 }
