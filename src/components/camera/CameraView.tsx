@@ -7,16 +7,13 @@ export default function CameraView() {
     const navigate = useNavigate();
 
     const [photos, setphotos] = useState<string[]>([]);
-    const [isPhotoTaken, setIsPhotoTaken] = useState(false); // State to track if photo is taken
+    const [isPhotoTaken, setIsPhotoTaken] = useState(false);
 
     useEffect(() => {
         getMediaStream(constraints);
         requestNotificationPermission();
-    }, []);
-
-    useEffect(() => {
         localStorage.setItem('photos', JSON.stringify(photos));
-    }, [photos]);    
+    }, [photos]);
 
     let mediaStream = null;
 

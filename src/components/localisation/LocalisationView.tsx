@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import '../../style/Localisation.css';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
 
 interface LocationState {
   latitude: number;
@@ -58,6 +61,3 @@ export default function LocalisationView() {
     </div>
   );
 }
-
-{/* Pour intégrer une map et un point à parrir de longitude et latitude -> librairy installable via npm
- https://leafletjs.com/ */}
