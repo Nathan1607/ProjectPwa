@@ -36,7 +36,7 @@ const Header: React.FC = () => {
                     <li>
                         <NavLink to="/galleriephoto">Gallerie Photo</NavLink>
                     </li>
-                    <li>
+                    <li className='online-class'>
                         {online ? (
                             <span>Online</span>
                         ) : (
