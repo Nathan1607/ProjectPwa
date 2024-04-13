@@ -16,4 +16,8 @@ p {
     font-weight: bold;
 }
 
-  
+.p-map {
+    margin: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
