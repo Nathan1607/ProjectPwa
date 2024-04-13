@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../style/Header.css';
 
 const Header: React.FC = () => {
+
+    const [online, setOnline] = useState(navigator.onLine);
+
+    useEffect(() => {
+        const handleOnlineStatus = () => {
+            setOnline(navigator.onLine);
+        };
+
+        window.addEventListener('online', handleOnlineStatus);
+        window.addEventListener('offline', handleOnlineStatus);
+
+        return () => {
+            window.removeEventListener('online', handleOnlineStatus);
+            window.removeEventListener('offline', handleOnlineStatus);
+        };
+    }, []);
+
     return (
         <div>
             <nav>
@@ -18,6 +35,13 @@ const Header: React.FC = () => {
                     </li>
                     <li>
                         <NavLink to="/galleriephoto">Gallerie Photo</NavLink>
+                    </li>
+                    <li>
+                        {online ? (
+                            <span>Online</span>
+                        ) : (
+                            <span>Offline</span>
+                        )}
                     </li>
                 </ul>
             </nav>
