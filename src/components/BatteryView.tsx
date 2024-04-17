@@ -1,4 +1,3 @@
-import { BatteryManager } from "@uidotdev/usehooks";
 import React, { useState, useEffect } from "react";
 
 export default function BatteryStatus() {
