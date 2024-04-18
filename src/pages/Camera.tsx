@@ -1,4 +1,4 @@
-import Header from "../components/Header"
+import Header from "../components/header/Header"
 import CameraView from '../components/camera/CameraView'
 import '../style/Camera.css'
 

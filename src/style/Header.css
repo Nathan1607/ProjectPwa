@@ -1,32 +1,53 @@
 nav {
     text-align: center;
     margin: 2rem auto;
-  }
+}
   
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
   
-  li {
-    display: inline-block;
-    margin-right: 2rem;
-    font-size: 1.5rem;
-  }
+li {
+  display: inline-block;
+  margin-right: 2rem;
+  font-size: 1.5rem;
+}
   
-  NavLink {
-    text-decoration: none;
-    color: black;
-  }
+NavLink {
+  text-decoration: none;
+  color: black;
+}
   
-  NavLink:hover {
-    color: blue;
-  }
+NavLink:hover {
+  color: blue;
+}
 
-  .online-class {
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 2rem;
-  }
+.online-class {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 2rem;
+}
+
+.battery-class {
+  position: absolute;
+  right: 6rem;
+  top: 0;
+  margin: 1rem;
+}
+
+.battery-container {
+  display: inline-block;
+}
+
+.battery-text {
+  display: inline-block;
+}
+
+.battery-image {
+  width: 2rem;
+  height: auto;
+  margin-right: 1rem;
+}

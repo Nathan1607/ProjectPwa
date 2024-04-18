@@ -41,7 +41,10 @@ export default function BatteryStatus() {
   return (
     <div>
       {batteryLevel !== null && (
-        <p>{batteryLevel}%</p>
+        <div className="battery-container">
+          <p className="battery-text">{batteryLevel}%</p>
+          <img  className="battery-image" src="/images/batterie.png" alt="Your Image" />
+        </div>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../style/Header.css';
-import BatteryStatus from './BatteryView';
+import '../../style/Header.css';
+import BatteryStatus from '../header/BatteryView';
 
 const Header: React.FC = () => {
 
@@ -37,8 +37,8 @@ const Header: React.FC = () => {
                     <li>
                         <NavLink to="/galleriephoto">Gallerie Photo</NavLink>
                     </li>
-                    <li>
-                    <BatteryStatus />
+                    <li className='battery-class'>
+                        <BatteryStatus />
                     </li>
                     <li className='online-class'>
                         {online ? (

@@ -1,6 +1,6 @@
 import LocalisationView from "../components/localisation/LocalisationView";
 import '../style/Localisation.css';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import MapView from "../components/localisation/MapView";
 
 export default function Localisation() {

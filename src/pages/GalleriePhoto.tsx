@@ -1,4 +1,4 @@
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import GallerieView from '../components/camera/GallerieView';
 
 export default function GalleriePhoto() {
