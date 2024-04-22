@@ -1,12 +1,9 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './pages/Home.tsx'
 import './index.css'
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 import Camera from './pages/Camera.tsx';
 import Localisation from './pages/Localisation.tsx';

@@ -1,4 +1,3 @@
-import React from "react";
 import '../../style/GaleriePhoto.css';
 
 export default function GallerieView() {

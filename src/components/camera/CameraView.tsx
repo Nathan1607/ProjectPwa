@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import GalleriePhoto from "../../pages/GalleriePhoto";
 import { useNavigate } from 'react-router-dom';
 
 export default function CameraView() {

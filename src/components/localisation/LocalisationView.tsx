@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import '../../style/Localisation.css';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
 
 interface LocationState {
   latitude: number;
