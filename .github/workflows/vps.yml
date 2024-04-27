@@ -26,5 +26,5 @@ jobs:
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}
         port: 22
-        source: "html/*"
+        source: "dist/*"
         target: "/var/www/html"
