@@ -25,5 +25,6 @@ jobs:
         server: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}
-        port: 21
+        port: 22
+        protocol: sftp
         local-dir: dist/
