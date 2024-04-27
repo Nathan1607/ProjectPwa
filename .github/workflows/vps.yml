@@ -19,12 +19,12 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Deploy
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+    - name: Deploy via SCP
+      uses: appleboy/scp-action@master
       with:
-        server: ${{ secrets.VPS_HOST }}
+        host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}
         port: 22
-        protocol: ftps
-        local-dir: dist/
+        source: "dist/*"
+        target: "/var/www/html"
