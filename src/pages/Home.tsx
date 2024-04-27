@@ -8,6 +8,7 @@ export default function App() {
         <h1>Vous êtes sur la page Home</h1>
         <br />
         <p>test 5</p>
+        <h1>COUCOU</h1>
       </div>
   );
 }
