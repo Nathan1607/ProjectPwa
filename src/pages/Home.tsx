@@ -25,15 +25,17 @@ export default function App() {
   };
 
   const handleCall = () => {
-    if (phoneNumber) {
+    if (phoneNumber.length == 10) {
       window.location.href = `tel:${phoneNumber}`;
     } else {
-      toast.error("Veuillez entrer un numéro de téléphone.");
+      toast.error("Le numéro de téléphone doit contenir 10 chiffres.  ");
     }
   };
 
   const handleKeyPress = (key: any) => {
-    setPhoneNumber(prevPhoneNumber => prevPhoneNumber + key);
+    if (phoneNumber.length < 10) {
+      setPhoneNumber(prevPhoneNumber => prevPhoneNumber + key);
+    }
   };
 
   const handleDelete = () => {
