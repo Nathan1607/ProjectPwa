@@ -6,6 +6,8 @@ export default function App() {
       <div>
         <Header />
         <h1>Vous êtes sur la page Home</h1>
+        <br />
+        <p>Test</p>
       </div>
   );
 }
