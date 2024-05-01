@@ -22,6 +22,10 @@ export default function App() {
     }
   }
 
+  const handleCall = () => {
+    window.location.href = 'tel:0610040031'; // Remplacez +1234567890 par le numéro que vous souhaitez appeler
+  };
+
   return (
       <div>
         <Header />
@@ -29,6 +33,7 @@ export default function App() {
         <br />
         <button onClick={handleClick}>Notification</button>
         <button onClick={handleClickVibration}>Vibration</button>
+        <button onClick={handleCall}>Appeler</button>
       </div>
   );
 }
