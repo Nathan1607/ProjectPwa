@@ -1,23 +1,17 @@
+import { toast } from 'react-toastify';
 import Header from '../components/header/Header';
 import '../style/Home.css'
 
 export default function App() {
 
   const handleClick = () => {
-    if ('Notification' in window && Notification.permission === 'granted') {
-      console.log('Notification permission granted.')
-      new Notification('Titre de la notification', {
-        body: 'Contenu de la notification'
-      });
-    } else if ('Notification' in window && Notification.permission !== 'denied') {
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          new Notification('Titre de la notification', {
-            body: 'Contenu de la notification'
-          });
-        }
-      });
-    }
+    toast.info('Notification envoyée et affichée', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+    });
+    console.log('Notification envoyée');
   }
 
   return (
