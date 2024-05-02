@@ -1,0 +1,48 @@
+.phone-keypad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.phone-display {
+    width: 200px;
+    height: 50px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+  
+.phone-keys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+  
+.phone-keys button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+    background-color: blue;
+    border: none;
+    cursor: pointer;
+}
+  
+.phone-keys button:hover {
+    background-color: #e0e0e0;
+}
+  
+.phone-keys button:active {
+    background-color: #d0d0d0;
+}
+  
+.phone-keys button:last-child {
+    grid-column: span 2;
+    width: 6rem;
+}
+
+.phone-keys button:nth-last-child(2) {
+    padding-right: 1rem;
+    align-items: center;
+}
