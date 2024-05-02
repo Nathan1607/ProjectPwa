@@ -37,6 +37,9 @@ const Header: React.FC = () => {
                     <li>
                         <NavLink to="/galleriephoto">Gallerie Photo</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/call">Call</NavLink>
+                    </li>
                     <li className='battery-class'>
                         <BatteryStatus />
                     </li>

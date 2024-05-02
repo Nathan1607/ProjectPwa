@@ -8,6 +8,7 @@ import {
 import Camera from './pages/Camera.tsx';
 import Localisation from './pages/Localisation.tsx';
 import GalleriePhoto from './pages/GalleriePhoto.tsx';
+import Call from './pages/Call.tsx';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/galleriephoto",
     element: <GalleriePhoto />,
+  },
+  {
+    path: "/call",
+    element: <Call />,
   }
 
 ]);
