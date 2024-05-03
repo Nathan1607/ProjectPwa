@@ -80,12 +80,12 @@ export default function CameraView() {
         if ('Notification' in window) {
           Notification.requestPermission().then((result) => {
             if (result === 'granted') {
-              new Notification('Notification', {
-                body: 'Vous avez pris une photo',
-              });
-              if ('vibrate' in navigator) {
-                navigator.vibrate(1000);
-            }
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(1000);
+                }
+                new Notification('Notification', {
+                    body: 'Vous avez pris une photo',
+                });
             } else {
               throw new Error('Permission refusée');
             }
