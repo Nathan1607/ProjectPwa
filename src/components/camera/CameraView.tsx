@@ -72,6 +72,7 @@ export default function CameraView() {
 
             if (navigator.serviceWorker && navigator.serviceWorker.controller && Notification.permission === 'granted') {
                 showNotification("Photo prise !");
+                console.log('Notification sent');
             } else {
                 console.error('Service worker not available or notification permission not granted');
             }

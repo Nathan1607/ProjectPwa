@@ -3,14 +3,20 @@ import Header from '../components/header/Header';
 import '../style/Home.css';
 
 export default function App() {
-
   const handleClick = () => {
-    toast.info('Notification envoyée et affichée', {
-      position: "top-right",
-      autoClose: 5000,
-      closeOnClick: true,
-    });
-    console.log('Notification envoyée');
+    if ('Notification' in window) {
+      Notification.requestPermission().then((result) => {
+        if (result === 'granted') {
+          new Notification('Notification', {
+            body: 'Ceci est une notification',
+          });
+        } else {
+          toast.error('Les notifications ne sont pas autorisées.');
+        }
+      });
+    } else {
+      toast.error("L'API Notification n'est pas disponible dans ce navigateur.");
+    }
   };
 
   const handleClickVibration = () => {
