@@ -7,12 +7,14 @@ export default function App() {
   useEffect(() => {
     if ('OTPCredential' in window) {
       window.addEventListener('DOMContentLoaded', e => {
+        console.log(e);
         const input = document.querySelector('input[autocomplete="one-time-code"]');
         if (!input) return;
         const ac = new AbortController();
         const form = input.closest('form');
         if (form) {
           form.addEventListener('submit', e => {
+            console.log(e);
             ac.abort();
           });
         }
