@@ -84,6 +84,9 @@ export default function CameraView() {
               new Notification('Notification', {
                 body: 'Vous avez pris une photo',
               });
+              if ('vibrate' in navigator) {
+                navigator.vibrate(2000);
+              }
             } else {
               throw new Error('Permission refusée');
             }

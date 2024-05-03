@@ -1,4 +1,5 @@
 // Permet d'installer le service worker
+
 self.addEventListener("install", event => {
   console.log("Service Worker installing.");
 });
