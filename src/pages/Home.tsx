@@ -25,7 +25,6 @@ export default function App() {
     } catch (error) {
       console.error('OTP Retrieval failed:', error);
     }
-
   }
 
   // async function OTP() {
