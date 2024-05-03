@@ -36,6 +36,7 @@ export default function App() {
       <Header />
       <h1>Vous êtes sur la page Home</h1>
       <br />
+      <p>WebOTP</p>
       <form>
         <input autoComplete="one-time-code" required />
         <input type="submit" />
