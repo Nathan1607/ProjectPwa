@@ -6,8 +6,8 @@ export default function App() {
 
   useEffect(() => {
     if ('OTPCredential' in window) {
-      window.addEventListener('DOMContentLoaded', e => {
-        console.log(e);
+      console.log('WebOTP is supported')
+      
         const input = document.querySelector('input[autocomplete="one-time-code"]');
         if (!input) return;
         const ac = new AbortController();
@@ -29,7 +29,7 @@ export default function App() {
         }).catch(err => {
           console.log(err);
         });
-      });
+
     }
   }, []);
 
