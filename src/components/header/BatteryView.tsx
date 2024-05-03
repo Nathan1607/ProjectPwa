@@ -35,7 +35,7 @@ export default function BatteryStatus() {
 
   const updateBatteryStatus = (battery: BatteryManager) => {
     const level = battery.level * 100;
-    setBatteryLevel(level);
+    setBatteryLevel(parseFloat(level.toFixed(0)));
   };
 
   return (
