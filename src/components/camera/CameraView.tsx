@@ -71,11 +71,6 @@ export default function CameraView() {
             setIsPhotoTaken(true);
 
             AddNotification();
-
-            if ('vibrate' in navigator) {
-                navigator.vibrate(2000);
-            }
-
         } else {
             console.error('No video width and height');
         }
@@ -88,6 +83,9 @@ export default function CameraView() {
               new Notification('Notification', {
                 body: 'Vous avez pris une photo',
               });
+              if ('vibrate' in navigator) {
+                navigator.vibrate(1000);
+            }
             } else {
               throw new Error('Permission refusée');
             }
