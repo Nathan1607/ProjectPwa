@@ -6,7 +6,7 @@ export default function App() {
 
   const handleClickVibration = () => {
     if ('vibrate' in navigator) {
-      navigator.vibrate(5000);
+      navigator.vibrate(1000);
     } else {
       toast.error("L'API Vibration n'est pas disponible dans ce navigateur.");
     }
