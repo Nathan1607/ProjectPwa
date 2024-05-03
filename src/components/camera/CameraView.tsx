@@ -70,25 +70,26 @@ export default function CameraView() {
             setphotos(prevPhotos => [...prevPhotos, data])
             setIsPhotoTaken(true);
 
-            if (navigator.serviceWorker && navigator.serviceWorker.controller && Notification.permission === 'granted') {
-                showNotification("Photo prise !");
-                console.log('Notification sent');
-            } else {
-                console.error('Service worker not available or notification permission not granted');
-            }
+            AddNotification();
 
         } else {
             console.error('No video width and height');
         }
     }
 
-    function showNotification(message: string) {
-        if (navigator.serviceWorker.controller) {
-            navigator.serviceWorker.ready.then(registration => {
-                registration.showNotification('Notification', {
-                    body: message,
-                });
-            });
+    const AddNotification = () => {
+        if ('Notification' in window) {
+          Notification.requestPermission().then((result) => {
+            if (result === 'granted') {
+              new Notification('Notification', {
+                body: 'Vous avez pris une photo',
+              });
+            } else {
+              throw new Error('Permission refusée');
+            }
+          });
+        } else {
+          throw new Error("L'API Notification n'est pas disponible dans ce navigateur.");
         }
     }
 

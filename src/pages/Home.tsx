@@ -11,11 +11,11 @@ export default function App() {
             body: 'Ceci est une notification',
           });
         } else {
-          toast.error('Les notifications ne sont pas autorisées.');
+          throw new Error('Permission refusée');
         }
       });
     } else {
-      toast.error("L'API Notification n'est pas disponible dans ce navigateur.");
+      throw new Error("L'API Notification n'est pas disponible dans ce navigateur.");
     }
   };
 
