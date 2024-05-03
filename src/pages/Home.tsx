@@ -1,23 +1,40 @@
-import { toast } from 'react-toastify';
 import Header from '../components/header/Header';
 import '../style/Home.css';
 
 export default function App() {
 
-  const handleClickVibration = () => {
-    if ('vibrate' in navigator) {
-      navigator.vibrate(1000);
-    } else {
-      toast.error("L'API Vibration n'est pas disponible dans ce navigateur.");
+if ('OTPCredential' in window) {
+  window.addEventListener('DOMContentLoaded', e => {
+    const input = document.querySelector('input[autocomplete="one-time-code"]');
+    if (!input) return;
+    const ac = new AbortController();
+    const form = input.closest('form');
+    if (form) {
+      form.addEventListener('submit', e => {
+        ac.abort();
+      });
     }
-  };
+    navigator.credentials.get({
+      otp: { transport:['sms'] },
+      signal: ac.signal
+    }).then(otp => {
+      input.value = otp.code;
+      if (form) form.submit();
+    }).catch(err => {
+      console.log(err);
+    });
+  });
+}
 
   return (
     <div>
       <Header />
       <h1>Vous êtes sur la page Home</h1>
       <br />
-      <button onClick={handleClickVibration}>Vibration</button>
+      <form>
+        <input autoComplete="one-time-code" required />
+        <input type="submit" />
+      </form>
     </div>
   );
 }
