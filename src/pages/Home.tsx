@@ -65,7 +65,11 @@ export default function App() {
       <p>WebOTP</p>
       <form>
         <button onClick={()=> receiveOTP()}>Receive OTP</button>
+        <br />
+        <br />
         <input autoComplete="one-time-code" required />
+        <br />
+        <br />
         <input type="submit" value={otpCode} />
       </form>
     </div>
