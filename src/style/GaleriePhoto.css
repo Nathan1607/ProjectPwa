@@ -18,7 +18,7 @@
 }
   
 .photo-item {
-    width: 25rem;
-    height: 20rem;
-    margin: 2rem;
+    width: 40vw;
+    height: auto;
+    margin: 2vw;
 }
