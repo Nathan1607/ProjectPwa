@@ -7,6 +7,12 @@ const Header: React.FC = () => {
 
     const [online, setOnline] = useState(navigator.onLine);
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     useEffect(() => {
         const handleOnlineStatus = () => {
             setOnline(navigator.onLine);
@@ -23,10 +29,13 @@ const Header: React.FC = () => {
 
     return (
         <div>
-            <nav>
+            <div className="menu-icon" onClick={toggleMenu}>
+                <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
+            </div>
+            <nav className={isMenuOpen ? 'active' : ''}>
                 <ul>
                     <li>
-                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/" onClick={toggleMenu}>Home</NavLink>
                     </li>
                     <li>
                         <NavLink to="/camera">Camera</NavLink>

@@ -25,16 +25,10 @@ NavLink:hover {
 }
 
 .online-class {
-  position: absolute;
-  right: 0;
-  top: 0;
   margin: 2rem;
 }
 
 .battery-class {
-  position: absolute;
-  right: 6rem;
-  top: 0;
   margin: 1rem;
 }
 
@@ -50,4 +44,23 @@ NavLink:hover {
   width: 2rem;
   height: auto;
   margin-right: 1rem;
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-icon {
+      display: block;
+      cursor: pointer;
+  }
+
+  nav ul {
+      display: none;
+  }
+
+  nav.active ul {
+      display: block;
+  }
 }
