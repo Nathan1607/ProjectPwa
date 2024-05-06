@@ -24,43 +24,56 @@ NavLink:hover {
   color: blue;
 }
 
-.online-class {
-  margin: 2rem;
-}
-
+.online-class,
 .battery-class {
-  margin: 1rem;
+    margin: 2rem 1rem;
 }
 
 .battery-container {
   display: inline-block;
 }
 
-.battery-text {
-  display: inline-block;
+.battery-text,
+.battery-image {
+    vertical-align: middle;
 }
 
 .battery-image {
   width: 2rem;
   height: auto;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 
 .menu-icon {
-  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999; /* Assure-toi que l'icône est au-dessus des autres éléments */
+  cursor: pointer;
+  color: black; /* Couleur de l'icône */
 }
+
 
 @media only screen and (max-width: 768px) {
   .menu-icon {
-      display: block;
+      display: block; /* Affiche l'icône de menu pour les appareils mobiles */
       cursor: pointer;
   }
 
+  .menu-icon i {
+      font-size: 24px; /* Taille de l'icône */
+  }
+
+  .menu-icon i.fa-times {
+      display: none; /* Masque l'icône "X" par défaut */
+  }
+
   nav ul {
-      display: none;
+      display: none; /* Masque les liens du menu par défaut */
+      margin-top: 20px; /* Marge supplémentaire pour le menu déroulant */
   }
 
   nav.active ul {
-      display: block;
+      display: block; /* Affiche les liens du menu lorsque le menu est ouvert */
   }
 }
