@@ -29,6 +29,18 @@ const Header: React.FC = () => {
 
     return (
         <div>
+            <div className='PreHeader'>
+                <div className='battery-class'>
+                    <BatteryStatus />
+                </div>
+                <div className='online-class'>
+                    {online ? (
+                        <span>Online</span>
+                        ) : (
+                            <span>Offline</span>
+                    )}
+                </div>
+            </div>
             <div className="menu-icon" onClick={toggleMenu}>
                 <i className="fas fa-bars"></i>
             </div>
@@ -48,16 +60,6 @@ const Header: React.FC = () => {
                     </li>
                     <li>
                         <NavLink to="/call">Call</NavLink>
-                    </li>
-                    <li className='battery-class'>
-                        <BatteryStatus />
-                    </li>
-                    <li className='online-class'>
-                        {online ? (
-                            <span>Online</span>
-                        ) : (
-                            <span>Offline</span>
-                        )}
                     </li>
                 </ul>
             </nav>
