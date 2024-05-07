@@ -10,7 +10,7 @@ const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        setIsMenuOpen(prevState => !prevState);
     };
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
     return (
         <div>
             <div className="menu-icon" onClick={toggleMenu}>
-            <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
+                <i className="fas fa-bars"></i>
             </div>
             <nav className={isMenuOpen ? 'active' : ''}>
                 <ul>

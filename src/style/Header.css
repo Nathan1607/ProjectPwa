@@ -45,35 +45,35 @@ NavLink:hover {
 }
 
 .menu-icon {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 9999; /* Assure-toi que l'icône est au-dessus des autres éléments */
-  cursor: pointer;
-  color: black; /* Couleur de l'icône */
+  display: none;
 }
 
 
 @media only screen and (max-width: 768px) {
   .menu-icon {
-      display: block; /* Affiche l'icône de menu pour les appareils mobiles */
-      cursor: pointer;
-  }
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    cursor: pointer;
+    color: black;
+}
 
   .menu-icon i {
-      font-size: 24px; /* Taille de l'icône */
+      font-size: 24px;
   }
 
   .menu-icon i.fa-times {
-      display: none; /* Masque l'icône "X" par défaut */
+      display: none;
   }
 
   nav ul {
-      display: none; /* Masque les liens du menu par défaut */
-      margin-top: 20px; /* Marge supplémentaire pour le menu déroulant */
+      display: none;
+      margin-top: 20px;
   }
 
   nav.active ul {
-      display: block; /* Affiche les liens du menu lorsque le menu est ouvert */
+      display: block;
   }
 }
