@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
 
 export default function CallView() {
 
@@ -32,7 +34,7 @@ export default function CallView() {
               {key}
             </button>
           ))}
-            <button onClick={handleCall}>Appeler</button>  {/* Ajouter un picto pour appeler */}
+            <button onClick={handleCall}><FontAwesomeIcon icon={faPhone} /></button>  {/* Ajouter un picto pour appeler */}
             <button className='phone-delete' onClick={handleDelete}>Effacer</button>
         </div>
       </div>
