@@ -9,8 +9,13 @@ export default function CameraView() {
     const [isPhotoTaken, setIsPhotoTaken] = useState(false);
 
     useEffect(() => {
+        const storedPhotos = JSON.parse(localStorage.getItem('photos') || '[]');
+        setphotos(storedPhotos);
         getMediaStream(constraints);
         requestNotificationPermission();
+    }, []);
+
+    useEffect(() => {
         localStorage.setItem('photos', JSON.stringify(photos));
     }, [photos]);
 
