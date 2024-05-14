@@ -10,19 +10,19 @@ interface LocationState {
 export default function LocalisationView() {
   const [location, setLocation] = useState<LocationState | null>(null);
 
-  // Save the location to local storage
-  const saveLocationToLocalStorage = (location: LocationState) => {
-    localStorage.setItem('location', JSON.stringify(location));
+  // Save the location to session storage
+  const saveLocationToSessionStorage = (location: LocationState) => {
+    sessionStorage.setItem('location', JSON.stringify(location));
   };
 
-  // Get the location from local storage
-  const getLocationFromLocalStorage = (): LocationState | null => {
+  // Get the location from session storage
+  const getLocationFromSessionStorage = (): LocationState | null => {
     const savedLocation = localStorage.getItem('location');
     return savedLocation ? JSON.parse(savedLocation) : null;
   };
 
   useEffect(() => {
-    const storedLocation = getLocationFromLocalStorage();
+    const storedLocation = getLocationFromSessionStorage();
     if (storedLocation) {
       setLocation(storedLocation);
     }
@@ -35,7 +35,7 @@ export default function LocalisationView() {
             longitude: position.coords.longitude,
           };
           setLocation(newLocation);
-          saveLocationToLocalStorage(newLocation);
+          saveLocationToSessionStorage(newLocation);
         },
         (error) => {
           console.log(error);
