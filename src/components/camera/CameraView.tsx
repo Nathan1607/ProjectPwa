@@ -73,11 +73,11 @@ export default function CameraView() {
             const data = canvas.toDataURL('image/png');
 
             //Object permettant de stocker la photo et le timestamp dans fichier JSON
-            const dataURL = canvas.toDataURL('image/png');
-            const photoObject = {
-                dataURL: dataURL,
-                timestamp: Date.now(),
-            };
+            // const dataURL = canvas.toDataURL('image/png');
+            // const photoObject = {
+            //     dataURL: dataURL,
+            //     timestamp: Date.now(),
+            // };
 
             setphotos(prevPhotos => [...prevPhotos, data])
             setIsPhotoTaken(true);
