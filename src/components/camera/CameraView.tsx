@@ -107,27 +107,27 @@ export default function CameraView() {
         }
     }
 
-    function savePhotosToFile() {
-        const jsonPhotos = JSON.stringify(photos);
-        const blob = new Blob([jsonPhotos], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
+    // function savePhotosToFile() {
+    //     const jsonPhotos = JSON.stringify(photos);
+    //     const blob = new Blob([jsonPhotos], { type: 'application/json' });
+    //     const url = URL.createObjectURL(blob);
 
-        // Créer un lien pour télécharger le fichier JSON
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'photos.json';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
+    //     // Créer un lien pour télécharger le fichier JSON
+    //     // const a = document.createElement('a');
+    //     // a.href = url;
+    //     // a.download = 'photos.json';
+    //     // document.body.appendChild(a);
+    //     // a.click();
+    //     // document.body.removeChild(a);
+    //     // URL.revokeObjectURL(url);
+    // }
 
   return (
     <div className="container-dev">
         <div className="BtnTake">
             <button id="snapBtn" onClick={takePhoto}>Photo</button>
             <button className="btn-Gallerie" onClick={() => navigate('/galleriephoto')}>Gallerie</button>
-            <button onClick={savePhotosToFile}>Enregistrer dans un fichier JSON</button>
+            {/* <button onClick={savePhotosToFile}>Enregistrer dans un fichier JSON</button> */}
         </div>
         <div className="container">
             <div className="container-video">

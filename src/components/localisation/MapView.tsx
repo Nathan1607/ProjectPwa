@@ -10,32 +10,33 @@ interface LocationData {
 
 export default function MapView() {
   const [location, setLocation] = useState<LocationData | null>(null);
+  const [loading, setLoading] = useState(true);
   const mapRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
 
   useEffect(() => {
     const updateLocation = () => {
-      const locationString = localStorage.getItem('location');
+      const locationString = sessionStorage.getItem('location');
       if (locationString) {
         try {
           const locationData: LocationData = JSON.parse(locationString);
           console.log('Données de localisation récupérées:', locationData);
           setLocation(locationData);
+          setLoading(false);
         } catch (error) {
           console.error('Erreur lors de la conversion des données JSON :', error);
+          setLoading(false);
         }
       } else {
-        console.log('Aucune donnée de localisation trouvée dans le localStorage.');
+        console.log('Aucune donnée de localisation trouvée dans le sessionStorage.');
       }
     };
 
-    // Chargement initial
     updateLocation();
 
-    // Écouter les changements de storage
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === 'location') {
-        console.log('localStorage "location" modifié:', event.newValue);
+        console.log('sessionsStorage "location" modifié:', event.newValue);
         updateLocation();
       }
     };
@@ -61,6 +62,27 @@ export default function MapView() {
     }
   }, [location]);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const locationString = sessionStorage.getItem('location');
+      if (locationString) {
+        try {
+          const locationData: LocationData = JSON.parse(locationString);
+          console.log('Données de localisation récupérées:', locationData);
+          setLocation(locationData);
+          setLoading(false);
+          clearInterval(intervalId);
+        } catch (error) {
+          console.error('Erreur lors de la conversion des données JSON :', error);
+          setLoading(false);
+          clearInterval(intervalId);
+        }
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   const initializeMap = (location: LocationData) => {
     const map = L.map(mapRef.current!).setView([location.latitude, location.longitude], 13);
     console.log('Carte initialisée à :', location.latitude, location.longitude);
@@ -77,12 +99,14 @@ export default function MapView() {
 
   return (
     <div className="location-container">
-      {location ? (
+      {loading ? (
+        <p>En attente de la localisation...</p>
+      ) : location ? (
         <div className="location-info">
           <div ref={mapRef} id="map" style={{ height: "20rem", width: "30rem" }}></div>
         </div>
       ) : (
-        <p>En attente de la localisation...</p>
+        <p>Aucune localisation disponible.</p>
       )}
     </div>
   );
