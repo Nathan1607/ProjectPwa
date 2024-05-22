@@ -1,6 +1,3 @@
-// import Header from '../components/header/Header';
-import '../style/Home.css';
-
 'use client'
  
 import { Box, Container, Typography } from "@mui/material";
@@ -36,7 +33,6 @@ export default function WebOtp() {
           setOtpError('Failed to auto-read OTP: ');
         }
  
-        // Cleanup to abort the request if the component unmounts
         return () => {
           ac.abort();
         };
@@ -57,6 +53,17 @@ export default function WebOtp() {
         justifyContent="center"
         height="100vh"
       >
+        <form>
+          <input
+            type="text"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            placeholder="Enter OTP"
+            autoComplete="one-time-code"
+            required
+          />
+          <input type="submit" color="primary">Submit</input>
+        </form>
         <Box>
           { otpError ? (
             <Typography color="error">{otpError}</Typography>
