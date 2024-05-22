@@ -1,6 +1,6 @@
 'use client'
  
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export default function WebOtp() {
@@ -54,15 +54,17 @@ export default function WebOtp() {
         height="100vh"
       >
         <form>
-          <input
+          <TextField
             type="text"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
             placeholder="Enter OTP"
             autoComplete="one-time-code"
             required
+            fullWidth
+            margin="normal"
           />
-          <input type="submit" color="primary">Submit</input>
+          <Button type="submit" variant="contained" color="primary">Submit</Button>
         </form>
         <Box>
           { otpError ? (
