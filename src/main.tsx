@@ -9,6 +9,7 @@ import Camera from './pages/Camera.tsx';
 import Localisation from './pages/Localisation.tsx';
 import GalleriePhoto from './pages/GalleriePhoto.tsx';
 import Call from './pages/Call.tsx';
+import WebOtp from './pages/WebOtp.tsx';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: "/call",
     element: <Call />,
+  }, 
+  {
+    path: "/webotp",
+    element: <WebOtp />,
   }
 
 ]);
