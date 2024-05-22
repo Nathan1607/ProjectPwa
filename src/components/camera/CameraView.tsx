@@ -101,7 +101,6 @@ export default function CameraView() {
                     return newQueue;
                 });
                 sendNotification('Photo prise en mode hors ligne, elle sera synchronisée lorsque vous serez en ligne.');
-                console.log("Photo saved to queue for later processing.");
                 setIsPhotoTaken(false);
             }
         } else {
@@ -113,7 +112,6 @@ export default function CameraView() {
         setIsOnline(true);
         const storedQueue = JSON.parse(localStorage.getItem('offlineQueue') || '[]');
         if (storedQueue.length > 0) {
-            console.log("Processing offline queue...");
             setPhotos(prevPhotos => {
                 const newPhotos = [...prevPhotos, ...storedQueue];
                 localStorage.setItem('photos', JSON.stringify(newPhotos));
