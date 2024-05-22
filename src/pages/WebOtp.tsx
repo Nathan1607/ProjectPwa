@@ -59,8 +59,6 @@ export default function WebOtp() {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
             placeholder="Enter OTP"
             autoComplete="one-time-code"
             required
