@@ -7,6 +7,7 @@ export default function CameraView() {
     const [photos, setPhotos] = useState<string[]>([]);
     const [isPhotoTaken, setIsPhotoTaken] = useState(false);
     const [offlineQueue, setOfflineQueue] = useState<string[]>([]);
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
 
     useEffect(() => {
         const storedPhotos = JSON.parse(localStorage.getItem('photos') || '[]');
@@ -15,8 +16,11 @@ export default function CameraView() {
         requestNotificationPermission();
 
         window.addEventListener('online', handleOnline);
+        window.addEventListener('offline', handleOffline);
+
         return () => {
             window.removeEventListener('online', handleOnline);
+            window.removeEventListener('offline', handleOffline);
         };
     }, []);
 
@@ -89,32 +93,40 @@ export default function CameraView() {
                     return newPhotos;
                 });
                 sendNotification('Vous avez pris une photo');
+                setIsPhotoTaken(true);
             } else {
                 setOfflineQueue(prevQueue => {
                     const newQueue = [...prevQueue, data];
                     localStorage.setItem('offlineQueue', JSON.stringify(newQueue));
                     return newQueue;
                 });
-                sendNotification('Vous avez pris une photo en mode hors ligne, veuillez être online pour la synchronisation des photos.');
+                sendNotification('Photo prise en mode hors ligne, elle sera synchronisée lorsque vous serez en ligne.');
+                console.log("Photo saved to queue for later processing.");
+                setIsPhotoTaken(false);
             }
-            setIsPhotoTaken(true);
         } else {
             console.error('No video width and height');
         }
     }
 
     function handleOnline() {
+        setIsOnline(true);
         const storedQueue = JSON.parse(localStorage.getItem('offlineQueue') || '[]');
         if (storedQueue.length > 0) {
+            console.log("Processing offline queue...");
             setPhotos(prevPhotos => {
                 const newPhotos = [...prevPhotos, ...storedQueue];
                 localStorage.setItem('photos', JSON.stringify(newPhotos));
                 return newPhotos;
             });
-            sendNotification(`Vous avez pris ${storedQueue.length} photo(s) en mode hors ligne, la synchronisation a été effectuée.`);
+            sendNotification(`Vous avez pris ${storedQueue.length} photo(s) en mode hors ligne`);
             setOfflineQueue([]);
             localStorage.removeItem('offlineQueue');
         }
+    }
+
+    function handleOffline() {
+        setIsOnline(false);
     }
 
     function sendNotification(message: string) {
@@ -145,7 +157,7 @@ export default function CameraView() {
             <div className="container">
                 <div className="container-video">
                     <video id="cam" muted>Not available</video>
-                    {isPhotoTaken && <img className="photoTaken" src={photos[photos.length - 1]} alt="Captured" />}
+                    {isPhotoTaken && isOnline && <img className="photoTaken" src={photos[photos.length - 1]} alt="Captured" />}
                 </div>
                 <canvas id="canvas"></canvas>
             </div>
