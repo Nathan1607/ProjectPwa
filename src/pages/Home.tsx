@@ -3,8 +3,6 @@ import '../style/Home.css';
 
 export default function App() {
 
-
-
   return (
     <div>
       <Header />

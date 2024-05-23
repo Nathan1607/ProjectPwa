@@ -64,9 +64,9 @@ const Header: React.FC = () => {
                     <li>
                         <NavLink to="/webotp">WebOTP</NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink to="/camerajson">Camera Json</NavLink>
-                    </li>
+                    </li> */}
                 </ul>
             </nav>
         </div>

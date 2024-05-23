@@ -1,78 +1,50 @@
-import { Box, Button, Container, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-
-export default function WebOtp() {
-  
-  const [otp, setOtp] = useState('');
-  const [otpError, setOtpError] = useState('');
+'use client'
  
-  useEffect(() => {
-    const fetchOTP = async () => {
-      if ('OTPCredential' in window) {
-        const ac = new AbortController();
-        const otpOption = {
-          otp: { transport: ['sms'] },
-          signal: ac.signal,
-        };
+import { useEffect, useState } from 'react';
  
-        try {
-          const otpCredential = await navigator.credentials.get(otpOption);
-          if (otpCredential && 'code' in otpCredential) {
-            const otpCode = (otpCredential as any).code;
-            if (otpCode) {
-              console.log('OTP read:', otpCode);
-              setOtp(otpCode);
-            } else {
-              setOtpError('No OTP code found in the credential');
-            }
+export default function WebOTP() {
+    const [otp, setOtp] = useState("");
+    
+    useEffect(() => {
+        if ("OTPCredential" in window) {
+ 
+            console.log("OTPCredential is good");
+            
+            const ac = new AbortController();
+            const otpOption = {
+                otp: { transport: ["sms"] },
+                signal: ac.signal
+            };
+            setTimeout(() => {
+                // abort after 10 minutes
+                ac.abort();
+            }, 10 * 60 * 1000);
+            navigator.credentials.get(otpOption).then((otp :any) => {
+                console.log('OPT GET');
+                alert('OPT GET');
+                if (otp) {
+                    setOtp(otp.code);
+                }
+            }).catch(err => {
+                console.log(err);
+                alert(err);
+            });
+          } else {
+            alert('OTP ELSE')
           }
-        } catch (err) {
-          console.error('Failed to auto-read OTP:', err);
-          setOtpError('Failed to auto-read OTP: ');
-        }
+    }, []);
+  
+    return (
+      <>
+        <h2>Your OTP is: {otp}</h2>
+        <input
+          type="text"
+          placeholder="Enter OTP"
+          autoComplete="one-time-code"
+          inputMode="numeric"
+          value={otp}
+        />
+      </>
+    );
+};
  
-        return () => {
-          ac.abort();
-        };
-      } else {
-        setOtpError('WebOTP API is not supported in this browser.');
-      }
-    };
- 
-    fetchOTP();
-  }, []);
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    // Handle submission logic here
-  };
-
-  return (
-    <Container maxWidth="sm" style={{ marginTop: '2em' }}>
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        height="100vh"
-      >
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            autoComplete="one-time-code"
-            required
-          />
-          <Button type="submit" variant="contained" color="primary">Submit</Button>
-        </form>
-        <Box>
-          { otpError ? (
-            <Typography color="error">{otpError}</Typography>
-          ) : (
-            <Typography>My OTP code is: {otp}</Typography>
-          )}
-        </Box>
-      </Box>
-    </Container>
-  );
-}
