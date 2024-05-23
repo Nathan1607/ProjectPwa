@@ -50,7 +50,7 @@ const Header: React.FC = () => {
                         <NavLink to="/" onClick={toggleMenu}>Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/camera">Camera</NavLink>
+                        <NavLink to="/camera">Camera Local</NavLink>
                     </li>
                     <li>
                         <NavLink to="/localisation">Localisation</NavLink>
@@ -63,6 +63,9 @@ const Header: React.FC = () => {
                     </li>
                     <li>
                         <NavLink to="/webotp">WebOTP</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/camerajson">Camera Json</NavLink>
                     </li>
                 </ul>
             </nav>
