@@ -17,7 +17,7 @@ Ce projet a été développé dans le cadre du TP "PWA simple" et "PWA online" p
 - Possibilité de passer un appel téléphonique.
 - Activation du mode vibreur lors de notifications.
 - Indication du niveau de batterie.
-- Utilisation de l'API WebOTP pour lire un SMS et valider l'envoi d'un mot de passe.
+- Synchronisation des photos en offline / online
 
 ## Installation et exécution
 
