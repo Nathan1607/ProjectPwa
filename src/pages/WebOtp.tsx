@@ -1,6 +1,7 @@
 'use client'
  
 import { useEffect, useState } from 'react';
+import Header from '../components/header/Header';
  
 export default function WebOTP() {
     const [otp, setOtp] = useState("");
@@ -36,6 +37,7 @@ export default function WebOTP() {
   
     return (
       <>
+        <Header />
         <h2>Your OTP is: {otp}</h2>
         <input
           type="text"
