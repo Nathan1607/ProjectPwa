@@ -127,24 +127,40 @@ export default function CameraView() {
         setIsOnline(false);
     }
 
-    function sendNotification(message: string) {
-        if ('Notification' in window) {
-            Notification.requestPermission().then((result) => {
-                if (result === 'granted') {
-                    if ('vibrate' in navigator) {
-                        navigator.vibrate(1000);
-                    }
-                    new Notification('Notification', {
-                        body: message,
-                    });
-                } else {
-                    throw new Error('Permission refusée');
-                }
-            });
-        } else {
-            throw new Error("L'API Notification n'est pas disponible dans ce navigateur.");
+    async function sendNotification(message: string) {
+        const registration = await navigator.serviceWorker.getRegistration();
+    
+        if (!registration) {
+            console.error("Service worker registration not found.");
+            return;
+        }
+    
+        if (Notification.permission === 'granted') {
+            showNotification(message);
+        } else if (Notification.permission !== 'denied') {
+            const permission = await Notification.requestPermission();
+            if (permission === 'granted') {
+                showNotification(message);
+            } else {
+                console.error('Permission refusée');
+            }
+        }
+    
+        function showNotification(body: string) {
+            const title = 'Notification';
+            const options = {
+                body,
+                vibrate: [1000]
+            };
+    
+            if (registration && 'showNotification' in registration) {
+                registration.showNotification(title, options);
+            } else {
+                new Notification(title, options);
+            }
         }
     }
+    
 
     return (
         <div className="container-dev">
