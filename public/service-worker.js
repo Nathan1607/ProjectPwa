@@ -14,9 +14,4 @@ self.addEventListener('notificationclick', event => {
   console.log('Notification click Received.', event);
 
   event.notification.close();
-
-  // Ouvrir une fenêtre ou une application, par exemple
-  // event.waitUntil(
-  //   clients.openWindow('https://www.example.com')
-  // );
 });

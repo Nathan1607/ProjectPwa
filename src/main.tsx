@@ -10,7 +10,6 @@ import Localisation from './pages/Localisation.tsx';
 import GalleriePhoto from './pages/GalleriePhoto.tsx';
 import Call from './pages/Call.tsx';
 import WebOtp from './pages/WebOtp.tsx';
-import CameraJson from './pages/CameraJson.tsx';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
@@ -48,11 +47,6 @@ const router = createBrowserRouter([
     path: "/webotp",
     element: <WebOtp />,
   },
-  {
-    path: "/camerajson",
-    element: <CameraJson />,
-  },
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

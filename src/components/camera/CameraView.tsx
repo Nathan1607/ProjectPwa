@@ -18,6 +18,9 @@ export default function CameraView() {
         window.addEventListener('online', handleOnline);
         window.addEventListener('offline', handleOffline);
 
+        const storedOfflineQueue = JSON.parse(localStorage.getItem('offlineQueue') || '[]');
+        setOfflineQueue(storedOfflineQueue);
+
         return () => {
             window.removeEventListener('online', handleOnline);
             window.removeEventListener('offline', handleOffline);
@@ -29,15 +32,10 @@ export default function CameraView() {
     }, [photos]);
 
     useEffect(() => {
-        const storedOfflineQueue = JSON.parse(localStorage.getItem('offlineQueue') || '[]');
-        setOfflineQueue(storedOfflineQueue);
-    }, []);
-
-    useEffect(() => {
         localStorage.setItem('offlineQueue', JSON.stringify(offlineQueue));
     }, [offlineQueue]);
 
-    let mediaStream: MediaStream | null = null;
+    let mediaStream: MediaStream | null = null;XMLDocument
 
     const constraints = { 
         audio: false, 
