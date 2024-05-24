@@ -1,6 +1,6 @@
 import Header from '../components/header/Header';
 import '../style/Home.css';
-import QRCode from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 
 export default function App() {
 
@@ -11,8 +11,10 @@ export default function App() {
       <Header />
       <h1>Vous êtes sur la page Home</h1>
       <br />
-      <h2>Scannez le QR code pour installer l'application</h2>
-      <QRCode value={installUrl} />
+      <h2>Scannez le QR code pour aller sur l'application</h2>
+      <div className='QRCode'>
+        <QRCodeSVG value={installUrl} />
+      </div>    
     </div>
   );
 }
