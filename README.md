@@ -1,6 +1,6 @@
 # Projet PWA en React et TypeScript
 
-Ce projet a été développé dans le cadre du TP "PWA simple" et "PWA online" pour répondre aux objectifs spécifiés.
+Ce projet a été développé dans le cadre d'un TP dans ma formation "Progressive Web App - PWA" pour répondre aux objectifs spécifiés.
 
 ## Objectif 1 : PWA simple
 
